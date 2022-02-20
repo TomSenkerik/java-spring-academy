@@ -59,6 +59,27 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
+
+		<!-- pridavam redis -->
+			<!-- tohle dela autokonfiguraci ktera je ocividne mocna.
+			 pokud udelam chybu v application.properties tak start appky spadne
+			 -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+			</dependency>
+
+			<!-- tohle je knihovna pro redis? -->
+<!--			<dependency>-->
+<!--				<groupId>io.lettuce</groupId>-->
+<!--				<artifactId>lettuce-core</artifactId>-->
+<!--			</dependency>-->
+
+		<!-- autokonfigurace pro rabbitmq? -->
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  redis:
+    ports:
+      - "16379:6379"
+    image: redis
+    restart: always # pokud se kontejner zastavi tak restartovat
+    command: --requirepass "mypass"
+  rabbitmq:
+    ports:
+      - "5671:5672"
+    image: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
