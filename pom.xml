@@ -8,6 +8,7 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>cz.moje</groupId>
 	<artifactId>aggregator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -16,11 +17,14 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -31,9 +35,23 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- tests -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -61,19 +79,13 @@
 		</dependency>
 
 		<!-- pridavam redis -->
-			<!-- tohle dela autokonfiguraci ktera je ocividne mocna.
-			 pokud udelam chybu v application.properties tak start appky spadne
-			 -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-redis</artifactId>
-			</dependency>
-
-			<!-- tohle je knihovna pro redis? -->
-<!--			<dependency>-->
-<!--				<groupId>io.lettuce</groupId>-->
-<!--				<artifactId>lettuce-core</artifactId>-->
-<!--			</dependency>-->
+		<!-- tohle dela autokonfiguraci ktera je ocividne mocna.
+		 pokud udelam chybu v application.properties tak start appky spadne
+		 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 
 		<!-- autokonfigurace pro rabbitmq? -->
 		<dependency>
@@ -86,6 +98,20 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
 		</dependency>
+
+		<!-- validace pro POJO? moc to nefunguje -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- dokumentace endpointu -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -101,6 +127,42 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+
+			<!-- neco jako znovuvygenerovani dokumentace -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- tady bych rekl ze potrebuju mit stejnou verzi springu -->
+<!--				<version>2.3.3.RELEASE</version>-->
+				<version>2.6.3</version>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-maven-plugin</artifactId>
+				<version>0.2</version>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

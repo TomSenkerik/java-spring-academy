@@ -24,6 +24,11 @@ public class YAMLConfig {
 
     public Optional<String> convertPOJOtoYAML(Object o) {
         try {
+            if (o != null) {
+                logger.info("convert POJO to YAML for type: " + o.getClass().getName());
+            } else {
+                logger.info("convert POJO to YAML for type is null");
+            }
             return Optional.of(this.om.writeValueAsString(o));
         } catch (JsonProcessingException e) {
             logger.error("fail converting POJO to YAML");
