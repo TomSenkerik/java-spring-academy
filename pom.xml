@@ -61,10 +61,11 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-		</dependency>
+		<!-- mozna tuhle dependency neprotrebuju -->
+<!--		<dependency>-->
+<!--			<groupId>javax.xml.bind</groupId>-->
+<!--			<artifactId>jaxb-api</artifactId>-->
+<!--		</dependency>-->
 
 		<!-- a response v YAML -->
 		<dependency>
