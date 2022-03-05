@@ -9,6 +9,20 @@ Learning app of Java and Spring Boot. App contains:
 - Default validation
 - Endpoint documentation with OpenAPI
 
+# Environments
+### application.properties
+There is default one `application.properties` where is property `spring.profiles.active` to switch between dev / test / prod environments.
+
+### intellij
+In run/debug configuration there is `Active profiles` where only dev / test / prod is placed.
+
+### argument in CLI
+Argument in CLI should be like this. I never try it. `-Dprofile="profile_name"`
+
+# Git repository
+
+https://github.com/TomSenkerik/java-spring-academy      
+
 # Heroku
 
 https://tom-learn-spring.herokuapp.com
